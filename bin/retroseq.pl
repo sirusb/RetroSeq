@@ -920,7 +920,11 @@ sub _filterCallsBedMinima
 	    
 	    my $start = $originalCallA[ 1 ];my $end = $originalCallA[ 2 ];my $chr = $originalCallA[ 0 ];
 	    
-        if($start> $end or $start <0 or $end <0){ next;} # skip invalid calls
+    
+        if( $start !~ /^\d+$/ || $end !~ /^\d+$/ ){ 
+            qq[ Skipped region $chr:$start-$end as it is not a valid region \n];
+            next; 
+        }
 
 	    my $t = RetroSeq::Utilities::getCandidateBreakPointsDirVote($originalCallA[0], $originalCallA[1], $originalCallA[2],\@bams, 20, $incsoft );
 	    if( ! $t ){warn qq[Failed to get candidate breakpoints for call $originalCall\n];next;}
