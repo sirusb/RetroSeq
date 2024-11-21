@@ -922,7 +922,7 @@ sub _filterCallsBedMinima
 	    
     
         if( $start !~ /^\d+$/ || $end !~ /^\d+$/ ){ 
-            qq[ Skipped region $chr:$start-$end as it is not a valid region \n];
+            print qq[ Skipped region $chr:$start-$end as it is not a valid region \n];
             next; 
         }
 
